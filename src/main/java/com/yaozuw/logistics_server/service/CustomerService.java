@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yaozuw.server_for_express.entity.properties.ContactInformation;
-import com.yaozuw.server_for_express.entity.properties.Customer;
-import com.yaozuw.server_for_express.entity.properties.User;
+import com.yaozuw.logistics_server.entity.properties.ContactInformation;
+import com.yaozuw.logistics_server.entity.properties.Customer;
+import com.yaozuw.logistics_server.entity.properties.User;
 
 @Component
 @Transactional

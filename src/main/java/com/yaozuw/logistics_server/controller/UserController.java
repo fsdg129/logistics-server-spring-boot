@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yaozuw.server_for_express.entity.properties.Priviledge;
-import com.yaozuw.server_for_express.entity.properties.User;
-import com.yaozuw.server_for_express.service.UserService;
+import com.yaozuw.logistics_server.entity.properties.Priviledge;
+import com.yaozuw.logistics_server.entity.properties.User;
+import com.yaozuw.logistics_server.service.UserService;
 
 @Controller
 @RequestMapping("/user")

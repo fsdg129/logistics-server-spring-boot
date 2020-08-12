@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yaozuw.server_for_express.entity.properties.ContactInformation;
-import com.yaozuw.server_for_express.entity.properties.Position;
-import com.yaozuw.server_for_express.entity.properties.Priviledge;
-import com.yaozuw.server_for_express.entity.properties.Staff;
-import com.yaozuw.server_for_express.entity.properties.User;
+import com.yaozuw.logistics_server.entity.properties.ContactInformation;
+import com.yaozuw.logistics_server.entity.properties.Position;
+import com.yaozuw.logistics_server.entity.properties.Priviledge;
+import com.yaozuw.logistics_server.entity.properties.Staff;
+import com.yaozuw.logistics_server.entity.properties.User;
 
 @Component
 @Transactional

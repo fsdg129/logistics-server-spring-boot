@@ -1,20 +1,15 @@
 package com.yaozuw.logistics_server;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.ViewResolver;
+import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.loader.ServletLoader;
-import com.mitchellbosecke.pebble.spring.extension.SpringExtension;
-import com.mitchellbosecke.pebble.spring.servlet.PebbleViewResolver;
 
 @SpringBootApplication
 public class AppConfig {
@@ -24,7 +19,7 @@ public class AppConfig {
 	}
 	
 	@Bean
-	WebMvcConfigurer createWebMvcConfigurer() {
+	WebMvcConfigurer createWebMvcConfigurer(@Autowired HandlerInterceptor[] interceptors) {
 	    return new WebMvcConfigurer() {
 	    	//Support static resources
 	        @Override
@@ -35,13 +30,17 @@ public class AppConfig {
 	        //Configure CORS
 	        @Override
 	        public void addCorsMappings(CorsRegistry registry) {
-	            registry.addMapping("/api/**")
-	                    .allowedOrigins("http://localhost:3000/")
-	                    .allowedMethods("GET", "POST")
-	                    .maxAge(3600);
+	            registry.addMapping( env.getProperty("app.cors.mapping") )
+	                    .allowedOrigins( env.getProperty("app.cors.allowedOrigins") )
+	                    .allowedMethods( env.getProperty("app.cors.allowedMethods") )
+	                    .allowCredentials( env.getProperty("app.cors.allowCredentials", Boolean.class) )
+	                    .maxAge( env.getProperty("app.cors.maxAge", Integer.class) );
 	        }
 	    };
 	}
+	
+	@Autowired
+	private Environment env;
 	
 
 }

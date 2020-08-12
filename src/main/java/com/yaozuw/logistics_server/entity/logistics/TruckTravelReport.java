@@ -3,8 +3,8 @@ package com.yaozuw.logistics_server.entity.logistics;
 import java.time.Instant;
 import java.util.Set;
 
-import com.yaozuw.server_for_express.entity.properties.Staff;
-import com.yaozuw.server_for_express.entity.properties.Truck;
+import com.yaozuw.logistics_server.entity.properties.Staff;
+import com.yaozuw.logistics_server.entity.properties.Truck;
 
 public class TruckTravelReport {
 

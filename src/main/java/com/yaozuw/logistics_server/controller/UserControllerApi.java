@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +25,8 @@ public class UserControllerApi {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("/register")
-	public ResponseTemplate doRegister(@RequestParam("username") String username,
+	@PostMapping("/")
+	public ResponseTemplate register(@RequestParam("username") String username,
 			@RequestParam("password") String password ) {
 		
 		if(userService.boolRepeatedUsername(username)) {
@@ -37,18 +39,13 @@ public class UserControllerApi {
 		
 	}
 	
-	@GetMapping("/signin")
-	public ModelAndView signin(HttpSession session) {
+	@GetMapping("/{userId}")
+	public ResponseTemplate getUserById(@PathVariable String userId) {
 		
-		Boolean boolSignin = (Boolean) session.getAttribute("boolSignin");
-		if(boolSignin == null || boolSignin.equals(Boolean.FALSE) ) {
-			return new ModelAndView( "signin.html" );
-		} else {
-			return new ModelAndView( "welcome.html" );
-		}
+		
 	}
 	
-	@PostMapping("/signin")
+	@PutMapping("/:id")
 	public ModelAndView doSignin(@RequestParam("username") String username,
 			@RequestParam("password") String password,
 			HttpSession session) {

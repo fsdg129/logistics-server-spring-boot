@@ -2,9 +2,9 @@
 
 spring:
   application:
-  	name: ${APP_NAME:Logistics-server}
+    name: ${APP_NAME:Logistics-server}
   datasource:
-    url: jdbc:mysql://localhost:3306/express?useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/express?useSSL=false&serverTimezone=UTC&characterEncoding=utf8&allowPublicKeyRetrieval=true
     username: root
     password: tjwyzwyz5
     dirver-class-name: com.mysql.jdbc.Driver
@@ -16,15 +16,33 @@ spring:
       maximum-pool-size: 20
       minimum-idle: 1
   jpa:
-	hibernate:
-	  ddl-auto: update
-	  dialect: org.hibernate.dialect.MySQL55Dialect
-	  show_sql: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQL55Dialect
+        show_sql: true
 
 server:
-  port: ${APP_PORT:8080}
+  port: 8443
+  ssl:
+    key-store: classpath:localkeystore
+    key-store-password: dontpanic42
+    keyStoreType: PKCS12
+    keyAlias: localcert  
+    key-password: dontpanic42
 
+#keytool -storepass dontpanic42 -genkeypair -keyalg RSA -keysize 1024 -validity 3650 -alias localcert -storetype PKCS12 -keystore localkeystore -dname "CN=https://localhost:8443/"
+#keytool -list -v -storetype pkcs12 -keystore localkeystore
 
 pebble:
   suffix:
   cache: false
+
+app:
+  cors:
+    mapping: /api/**
+    allowedOrigins: https://localhost:3000/
+    allowedMethods: "*"
+    maxAge: 3600
+    allowCredentials: true
+    

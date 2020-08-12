@@ -3,7 +3,7 @@ package com.yaozuw.logistics_server.entity.logistics;
 import java.time.Instant;
 import java.util.ArrayList;
 
-import com.yaozuw.server_for_express.entity.properties.ContactInformation;
+import com.yaozuw.logistics_server.entity.properties.ContactInformation;
 
 public class Order {
 
