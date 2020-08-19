@@ -16,6 +16,7 @@ spring:
       maximum-pool-size: 20
       minimum-idle: 1
   jpa:
+    generate-ddl: true    
     properties:
       hibernate:
         ddl-auto: update
@@ -41,8 +42,9 @@ pebble:
 app:
   cors:
     mapping: /api/**
-    allowedOrigins: https://localhost:3000/
-    allowedMethods: "*"
+    allowedOrigins: http://localhost:3000
+    allowedMethods: OPTIONS, PUT, DELETE, GET, POST, PATCH 
+    allowedHeaders: "*"
     maxAge: 3600
     allowCredentials: true
     

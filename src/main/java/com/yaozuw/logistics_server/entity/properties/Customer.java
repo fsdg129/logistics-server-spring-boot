@@ -6,7 +6,6 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="customers")
 @DiscriminatorValue("CUSTOMER")
 public class Customer extends Identification {
 

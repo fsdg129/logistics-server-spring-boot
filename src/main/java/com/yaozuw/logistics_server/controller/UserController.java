@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@GetMapping("/")
 	public ModelAndView index() {
@@ -66,7 +70,7 @@ public class UserController {
 			HttpSession session) {
 		
 		User user = userService.getUserByUsername(username);
-		if(user == null || password.equals( user.getPassword() )==false ) {
+		if(user == null || encoder.matches(password, user.getPassword())==false ) {
 			return new ModelAndView( "signin.html", Map.of("status", "failed", 
 					"message", "either username or password is not correct", "error_code", "2") );
 		} else {

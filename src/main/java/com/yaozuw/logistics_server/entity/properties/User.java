@@ -25,7 +25,7 @@ public class User {
     @Column(name = "username", nullable = false, length=15, unique = true)
 	private String username;
     
-    @Column(name = "password", nullable = false, length=35)
+    @Column(name = "password", nullable = false, length=70)
 	private String password;
     
 	//Determine what this user could see or change

@@ -10,11 +10,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.yaozuw.logistics_server.entity.properties.Priviledge;
 import com.yaozuw.logistics_server.entity.properties.User;
 import com.yaozuw.logistics_server.service.UserService;
@@ -27,12 +28,11 @@ public class UserControllerApi {
 	UserService userService;
 	
 	@PostMapping("/")
-	public ResponseTemplate register(@RequestParam("username") String username,
-			@RequestParam("password") String password ) {
-		
+	public ResponseTemplate register(@RequestBody ObjectNode json) {
+		String username = json.get("username").asText();
+		String password = json.get("password").asText();
 		if(userService.boolRepeatedUsername(username)) {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "The username has been used");
-
 		} else {
 			User user = userService.addUser(username, password, Priviledge.VISITOR);
 			user.setPassword("");

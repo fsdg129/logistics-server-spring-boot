@@ -11,7 +11,6 @@ import org.hibernate.annotations.Type;
 
 
 @Entity
-@Table(name="staff")
 @DiscriminatorValue("STAFF")
 public class Staff extends Identification{
 	

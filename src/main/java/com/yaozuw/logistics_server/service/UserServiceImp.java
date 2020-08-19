@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +25,14 @@ public class UserServiceImp implements UserService {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public User addUser(String username, String password, Priviledge priviledge) {
+	@Autowired
+	private PasswordEncoder encoder;
+	
+	public User addUser(String username, String rawPassword, Priviledge priviledge) {
 		
 		User user = new User();
 		user.setUsername(username);
-		user.setPassword(password);
+		user.setPassword(encoder.encode(rawPassword));
 		user.setPriviledge(priviledge);
 
 		em.persist(user);
