@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,17 @@ public class UserControllerApi {
 		
 	}
 	
+	@GetMapping("/user")
+	public ResponseTemplate getCurrentUser(HttpServletRequest request) {
+		
+		String username = request.getUserPrincipal().getName();
+		User wantedUser = userService.getUserByUsername(username);
+		wantedUser.setPassword("");
+		
+		return new ResponseTemplate("succeeded", "", "", 0, wantedUser);
+
+	}
+	
 	@GetMapping("/{userId:\\d+}")
 	public ResponseTemplate getUserById(@PathVariable String userId, HttpServletRequest request) {
 		String username = request.getUserPrincipal().getName();
@@ -58,10 +70,10 @@ public class UserControllerApi {
 		
 	}
 	
-	@GetMapping("/{username}")
+	@GetMapping("/usernames/{username}")
 	public ResponseTemplate getUserByUsername(@PathVariable String username, HttpServletRequest request) {
 
-		User wantedUser = userService.getUserById(Long.valueOf(username));
+		User wantedUser = userService.getUserByUsername(username);
 		if(wantedUser == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
 		} else {

@@ -49,14 +49,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         	//Configure the authorization for the domain /users
         	.and()
         		.authorizeRequests()
-        		.antMatchers(HttpMethod.GET, "/api/users/").hasRole("MANAGER")
+        		.antMatchers(HttpMethod.GET, "/api/users/user").hasAuthority("VISITOR")
+        		.antMatchers(HttpMethod.GET, "/api/users/{\\d+}").hasAuthority("VISITOR")
+        		.antMatchers(HttpMethod.HEAD, "/api/users/usernames/**").permitAll()
+        		.antMatchers(HttpMethod.GET, "/api/users/").hasAuthority("MANAGER")
         		.antMatchers(HttpMethod.POST, "/api/users/").permitAll()
-        		.antMatchers(HttpMethod.GET, "/api/users/{\\d+}").hasRole("VISITOR")
-        		.antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-        		.antMatchers(HttpMethod.HEAD, "/api/users/**").permitAll()
-        		.antMatchers(HttpMethod.PUT, "/api/users/**").hasRole("VISITOR")
-        		.antMatchers(HttpMethod.PATCH, "/api/users/**").hasRole("VISITOR")
-        		.antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("MANAGER");
+        		.antMatchers(HttpMethod.PUT, "/api/users/**").hasAuthority("VISITOR")
+        		.antMatchers(HttpMethod.PATCH, "/api/users/**").hasAuthority("VISITOR")
+        		.antMatchers(HttpMethod.DELETE, "/api/users/**").hasAuthority("MANAGER");
 
 
     }

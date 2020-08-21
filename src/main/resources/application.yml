@@ -43,7 +43,7 @@ app:
   cors:
     mapping: /api/**
     allowedOrigins: http://localhost:3000
-    allowedMethods: OPTIONS, PUT, DELETE, GET, POST, PATCH 
+    allowedMethods: OPTIONS, PUT, DELETE, GET, POST, PATCH, HEAD
     allowedHeaders: "*"
     maxAge: 3600
     allowCredentials: true
