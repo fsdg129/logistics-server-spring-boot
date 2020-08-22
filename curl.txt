@@ -1,8 +1,0 @@
-curl --header "Content-Type: application/json" -H "Origin: http://localhost:3000" --verbose -X POST --data "{\"username\": \"xyz\", \"password\": \"xyz\"}" -k  https://localhost:8443/api/users/ -H "Authorization: Basic"
-curl -d "username=user1&password=abcd" -X POST https://localhost:8443/user/signin -k -verbose
-curl -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST" --verbose -X OPTIONS -k  https://localhost:8443/api/users/
-curl -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: authorization,content-type" -H "Cache-Control: max-age=0" -H "Connection: keep-alive" -H "Sec-Fetch-Mode: cors" -H "Sec-Fetch-Site: cross-site" -H "Sec-Fetch-Dest: empty" --verbose -X OPTIONS -k  https://localhost:8443/api/users/
-curl -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: authorization,content-type" -H "Cache-Control: max-age=0" -H "Connection: keep-alive" -H "Sec-Fetch-Mode: cors" -H "Sec-Fetch-Site: cross-site" -H "Sec-Fetch-Dest: empty" -H "Referer: http://localhost:3000/no-referrer" -H "Accept-Encoding: gzip, deflate, br" -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" --verbose -X OPTIONS -k  https://localhost:8443/api/users/
-curl -H "Origin: http://localhost:3000" --verbose -X HEAD -k  https://localhost:8443/api/users/yaozu
-curl -H "Origin: http://localhost:3000" --verbose -X GET -k  https://localhost:8443/api/users/user
-curl -H "Origin: http://localhost:3000" --user 111:1  --verbose -X GET -k  https://localhost:8443/api/users/user
