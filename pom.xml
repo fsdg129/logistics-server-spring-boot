@@ -15,14 +15,13 @@
 	<groupId>com.yaozuw</groupId>
 	<artifactId>logistics-server-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>logistics-server-spring-boot</name>
 	<description>A logistics server developed by Spring Boot</description>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>14</java.version>
+		<java.version>11</java.version>
 
 		<pebble.version>3.1.2</pebble.version>
 		<jgrapht.version>1.4.0</jgrapht.version>
