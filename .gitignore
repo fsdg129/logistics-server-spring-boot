@@ -24,4 +24,4 @@ hs_err_pid*
 /target/
 
 #keystore
-/src/main/resources/localkeystore
+/src/main/resources/*store
